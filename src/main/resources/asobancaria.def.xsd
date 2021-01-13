@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://schemas.zabud.com.co/eigth/asobancaria"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://schemas.zabud.com.co/eigth/asobancaria"
+           xmlns:jrb="http://jrecordbind.org/3/xsd"
+           elementFormDefault="qualified">
+    <xs:complexType name="FileHeader">
+        <xs:sequence>
+            <xs:element name="recordType" type="xs:int" fixed="01" jrb:length="2"/>
+            <xs:element name="collectCompanyNIT" type="xs:int" jrb:length="10"/>
+            <xs:element name="collectDate" type="xs:int" jrb:length="8"/>
+            <xs:element name="collectEntityCode" type="xs:int" jrb:length="3"/>
+            <xs:element name="receivingCustomerAccountNumber" type="xs:string" jrb:length="17"/>
+            <xs:element name="fileDateGeneration" type="xs:int" jrb:length="8"/>
+            <xs:element name="fileHourGeneration" type="xs:int" jrb:length="4"/>
+            <xs:element name="fileModificator" type="xs:string" jrb:length="1"/>
+            <xs:element name="accountType" type="xs:int" jrb:length="2"/>
+            <xs:element name="lotHeader" type="LotHeader" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="fileControl" type="FileControl"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="LotHeader">
+        <xs:sequence>
+            <xs:element name="recordType" type="xs:int" fixed="05" jrb:length="2"/>
+            <xs:element name="collectServiceCode" type="xs:int" jrb:length="13"/>
+            <xs:element name="lotNumber" type="xs:int" jrb:length="4"/>
+            <!--<xs:element name="reserved" type="xs:string" jrb:length="143"/>-->
+            <xs:element name="detailLotRecord" type="DetailLotRecord" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="lotControl" type="LotControl"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DetailLotRecord">
+        <xs:sequence>
+            <xs:element name="recordType" type="xs:int" fixed="06" jrb:length="2"/>
+            <xs:element name="userPrincipalReference" type="xs:int" jrb:length="48"/>
+            <xs:element name="collectValue" type="xs:int" jrb:length="14"/>
+            <xs:element name="paymentProcedence" type="xs:int" jrb:length="2"/>
+            <xs:element name="paymentType" type="xs:int" jrb:length="2"/>
+            <xs:element name="operationNumber" type="xs:int" jrb:length="6"/>
+            <xs:element name="authorizationNumber" type="xs:int" jrb:length="6"/>
+            <xs:element name="financialInstitutionDebitedCode" type="xs:int" jrb:length="3"/>
+            <xs:element name="branchOfficeCode" type="xs:int" jrb:length="4"/>
+            <xs:element name="sequence" type="xs:int" jrb:length="7"/>
+            <xs:element name="returnCause" type="xs:string" jrb:length="3"/>
+            <!--<xs:element name="reserved" type="xs:string" jrb:length="65"/>-->
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="LotControl">
+        <xs:sequence>
+            <xs:element name="recordType" type="xs:int" fixed="08" jrb:length="2"/>
+            <xs:element name="totalLotRecords" type="xs:int" jrb:length="9"/>
+            <xs:element name="totalValueCollectedInLot" type="xs:int" jrb:length="18"/>
+            <xs:element name="lotNumber" type="xs:string" jrb:length="4"/>
+            <!--<xs:element name="reserved" type="xs:string" jrb:length="129"/>-->
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FileControl">
+        <xs:sequence>
+            <xs:element name="recordType" type="xs:int" fixed="09" jrb:length="2"/>
+            <xs:element name="totalFileRecords" type="xs:int" jrb:length="9"/>
+            <xs:element name="totalValueCollectedInFile" type="xs:int" jrb:length="18"/>
+            <!--<xs:element name="reserved" type="xs:string" jrb:length="133"/>-->
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="main" type="FileHeader" jrb:length="55"/>
+</xs:schema>

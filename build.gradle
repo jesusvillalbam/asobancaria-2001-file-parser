@@ -1,0 +1,25 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.1'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+}
+
+group = 'com.jesusvillalbam'
+version = '1.0.0.RELEASE'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// https://mvnrepository.com/artifact/com.univocity/univocity-parsers
+	compile group: 'com.univocity', name: 'univocity-parsers', version: '2.9.0'
+
+}
+
+test {
+	useJUnitPlatform()
+}
