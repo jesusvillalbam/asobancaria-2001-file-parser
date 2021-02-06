@@ -1,9 +1,9 @@
-package com.example.demo.domain.dto;
+package com.jesusvillalbam.asobancaria2001fileparser.domain.dto;
 
 import com.univocity.parsers.annotations.FixedWidth;
 import com.univocity.parsers.annotations.Parsed;
 
-public class LotControl {
+public class LotControlV2001 {
 
     @Parsed
     @FixedWidth(value = 2)
@@ -48,5 +48,15 @@ public class LotControl {
 
     public void setLotNumber(String lotNumber) {
         this.lotNumber = lotNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "LotControlV2001{" +
+                "recordType='" + recordType + '\'' +
+                ", totalLotRecords='" + totalLotRecords + '\'' +
+                ", totalValueCollectedInLot='" + totalValueCollectedInLot + '\'' +
+                ", lotNumber='" + lotNumber + '\'' +
+                '}';
     }
 }

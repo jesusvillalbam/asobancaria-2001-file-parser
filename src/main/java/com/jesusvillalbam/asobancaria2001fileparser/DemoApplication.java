@@ -1,10 +1,10 @@
-package com.example.demo;
+package com.jesusvillalbam.asobancaria2001fileparser;
 
-import com.example.demo.domain.dto.FileControl;
-import com.example.demo.domain.dto.FileHeader;
-import com.example.demo.domain.dto.LotControl;
-import com.example.demo.domain.dto.LotDetail;
-import com.example.demo.domain.dto.LotHeader;
+import com.jesusvillalbam.asobancaria2001fileparser.domain.dto.FileControlV2001;
+import com.jesusvillalbam.asobancaria2001fileparser.domain.dto.FileHeaderV2001;
+import com.jesusvillalbam.asobancaria2001fileparser.domain.dto.LotControlV2001;
+import com.jesusvillalbam.asobancaria2001fileparser.domain.dto.LotDetailV2001;
+import com.jesusvillalbam.asobancaria2001fileparser.domain.dto.LotHeaderV2001;
 import com.univocity.parsers.common.processor.BeanListProcessor;
 import com.univocity.parsers.common.processor.InputValueSwitch;
 import com.univocity.parsers.common.processor.RowProcessor;
@@ -33,11 +33,11 @@ public class DemoApplication {
         settings.setHeaderExtractionEnabled(false);
 
 
-        FixedWidthFields fileHeader = FixedWidthFields.forParsing(FileHeader.class);
-        FixedWidthFields lotHeader = FixedWidthFields.forParsing(LotHeader.class);
-        FixedWidthFields lotDetail = FixedWidthFields.forParsing(LotDetail.class);
-        FixedWidthFields lotControl = FixedWidthFields.forParsing(LotControl.class);
-        FixedWidthFields fileControl = FixedWidthFields.forParsing(FileControl.class);
+        FixedWidthFields fileHeader = FixedWidthFields.forParsing(FileHeaderV2001.class);
+        FixedWidthFields lotHeader = FixedWidthFields.forParsing(LotHeaderV2001.class);
+        FixedWidthFields lotDetail = FixedWidthFields.forParsing(LotDetailV2001.class);
+        FixedWidthFields lotControl = FixedWidthFields.forParsing(LotControlV2001.class);
+        FixedWidthFields fileControl = FixedWidthFields.forParsing(FileControlV2001.class);
 
         settings.addFormatForLookahead("01", fileHeader);
         settings.addFormatForLookahead("05", lotHeader);
@@ -45,15 +45,15 @@ public class DemoApplication {
         settings.addFormatForLookahead("08", lotControl);
         settings.addFormatForLookahead("09", fileControl);
 
-        final BeanListProcessor<FileHeader> fileHeaderProcessor = new BeanListProcessor<>(FileHeader.class);
-        final BeanListProcessor<LotHeader> lotHeaderProcessor = new BeanListProcessor<>(LotHeader.class);
-        final BeanListProcessor<LotDetail> lotDetailProcessor = new BeanListProcessor<>(LotDetail.class);
-        final BeanListProcessor<LotControl> lotControlProcessor = new BeanListProcessor<>(LotControl.class);
-        final BeanListProcessor<FileControl> fileControlProcessor = new BeanListProcessor<>(FileControl.class);
+        final BeanListProcessor<FileHeaderV2001> fileHeaderProcessor = new BeanListProcessor<>(FileHeaderV2001.class);
+        final BeanListProcessor<LotHeaderV2001> lotHeaderProcessor = new BeanListProcessor<>(LotHeaderV2001.class);
+        final BeanListProcessor<LotDetailV2001> lotDetailProcessor = new BeanListProcessor<>(LotDetailV2001.class);
+        final BeanListProcessor<LotControlV2001> lotControlProcessor = new BeanListProcessor<>(LotControlV2001.class);
+        final BeanListProcessor<FileControlV2001> fileControlProcessor = new BeanListProcessor<>(FileControlV2001.class);
 
         InputValueSwitch inputValueSwitch = new InputValueSwitch(0) {
-            private FileHeader currentFileHeader;
-            private LotHeader currentLotHeader;
+            private FileHeaderV2001 currentFileHeader;
+            private LotHeaderV2001 currentLotHeader;
 
             @Override
             public void rowProcessorSwitched(RowProcessor from, RowProcessor to) {
@@ -97,6 +97,6 @@ public class DemoApplication {
         FixedWidthParser parser = new FixedWidthParser(settings);
         parser.parse(new InputStreamReader(DemoApplication.class.getResourceAsStream("/asobancaria_test.txt")));
 
-        fileHeaderProcessor.getBeans();
+        System.out.println(fileHeaderProcessor.getBeans().get(0).toString());
     }
 }

@@ -1,9 +1,9 @@
-package com.example.demo.domain.dto;
+package com.jesusvillalbam.asobancaria2001fileparser.domain.dto;
 
 import com.univocity.parsers.annotations.FixedWidth;
 import com.univocity.parsers.annotations.Parsed;
 
-public class LotDetail {
+public class LotDetailV2001 {
 
     @Parsed
     @FixedWidth(value = 2)
@@ -125,5 +125,22 @@ public class LotDetail {
 
     public void setReturnCause(String returnCause) {
         this.returnCause = returnCause;
+    }
+
+    @Override
+    public String toString() {
+        return "LotDetailV2001{" +
+                "recordType='" + recordType + '\'' +
+                ", userPrincipalReference='" + userPrincipalReference + '\'' +
+                ", collectValue='" + collectValue + '\'' +
+                ", paymentProcedence='" + paymentProcedence + '\'' +
+                ", paymentType='" + paymentType + '\'' +
+                ", operationNumber='" + operationNumber + '\'' +
+                ", authorizationNumber='" + authorizationNumber + '\'' +
+                ", financialInstitutionDebitedCode='" + financialInstitutionDebitedCode + '\'' +
+                ", branchOfficeCode='" + branchOfficeCode + '\'' +
+                ", sequence='" + sequence + '\'' +
+                ", returnCause='" + returnCause + '\'' +
+                '}';
     }
 }

@@ -1,9 +1,9 @@
-package com.example.demo.domain.dto;
+package com.jesusvillalbam.asobancaria2001fileparser.domain.dto;
 
 import com.univocity.parsers.annotations.FixedWidth;
 import com.univocity.parsers.annotations.Parsed;
 
-public class FileControl {
+public class FileControlV2001 {
 
     @Parsed
     @FixedWidth(value = 2)
@@ -37,5 +37,14 @@ public class FileControl {
 
     public void setTotalValueCollectedInFile(String totalValueCollectedInFile) {
         this.totalValueCollectedInFile = totalValueCollectedInFile;
+    }
+
+    @Override
+    public String toString() {
+        return "FileControlV2001{" +
+                "recordType='" + recordType + '\'' +
+                ", totalFileRecords='" + totalFileRecords + '\'' +
+                ", totalValueCollectedInFile='" + totalValueCollectedInFile + '\'' +
+                '}';
     }
 }

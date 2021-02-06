@@ -1,15 +1,14 @@
-package com.example.demo.domain.dto;
+package com.jesusvillalbam.asobancaria2001fileparser.domain.dto;
 
 import com.univocity.parsers.annotations.FixedWidth;
 import com.univocity.parsers.annotations.Headers;
-import com.univocity.parsers.annotations.Nested;
 import com.univocity.parsers.annotations.Parsed;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Headers
-public class FileHeader {
+public class FileHeaderV2001 {
 
     @Parsed
     @FixedWidth(value = 2)
@@ -38,8 +37,8 @@ public class FileHeader {
     @Parsed
     @FixedWidth(value = 2)
     private String accountType;
-    private List<LotHeader> lotHeader = new ArrayList<>();
-    private FileControl fileControl;
+    private List<LotHeaderV2001> lotHeader = new ArrayList<>();
+    private FileControlV2001 fileControl;
 
     public String getRecordType() {
         return recordType;
@@ -113,19 +112,36 @@ public class FileHeader {
         this.accountType = accountType;
     }
 
-    public List<LotHeader> getLotHeader() {
+    public List<LotHeaderV2001> getLotHeader() {
         return lotHeader;
     }
 
-    public void setLotHeader(List<LotHeader> lotHeader) {
+    public void setLotHeader(List<LotHeaderV2001> lotHeader) {
         this.lotHeader = lotHeader;
     }
 
-    public FileControl getFileControl() {
+    public FileControlV2001 getFileControl() {
         return fileControl;
     }
 
-    public void setFileControl(FileControl fileControl) {
+    public void setFileControl(FileControlV2001 fileControl) {
         this.fileControl = fileControl;
+    }
+
+    @Override
+    public String toString() {
+        return "FileHeaderV2001{" +
+                "recordType='" + recordType + '\'' +
+                ", collectCompanyNIT='" + collectCompanyNIT + '\'' +
+                ", collectDate='" + collectDate + '\'' +
+                ", collectEntityCode='" + collectEntityCode + '\'' +
+                ", receivingCustomerAccountNumber='" + receivingCustomerAccountNumber + '\'' +
+                ", fileDateGeneration='" + fileDateGeneration + '\'' +
+                ", fileHourGeneration='" + fileHourGeneration + '\'' +
+                ", fileModificator='" + fileModificator + '\'' +
+                ", accountType='" + accountType + '\'' +
+                ", lotHeader=" + lotHeader +
+                ", fileControl=" + fileControl +
+                '}';
     }
 }
