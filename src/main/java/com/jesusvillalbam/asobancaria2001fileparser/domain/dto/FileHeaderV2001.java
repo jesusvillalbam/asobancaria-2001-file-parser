@@ -3,6 +3,7 @@ package com.jesusvillalbam.asobancaria2001fileparser.domain.dto;
 import com.univocity.parsers.annotations.FixedWidth;
 import com.univocity.parsers.annotations.Headers;
 import com.univocity.parsers.annotations.Parsed;
+import com.univocity.parsers.fixed.FieldAlignment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ public class FileHeaderV2001 {
     @FixedWidth(value = 2)
     private String recordType;
     @Parsed
-    @FixedWidth(value = 10)
+    @FixedWidth(value = 10, alignment = FieldAlignment.RIGHT, padding = '0')
     private String collectCompanyNIT;
     @Parsed
     @FixedWidth(value = 8)

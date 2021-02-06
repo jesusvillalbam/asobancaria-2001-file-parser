@@ -2,6 +2,7 @@ package com.jesusvillalbam.asobancaria2001fileparser.domain.dto;
 
 import com.univocity.parsers.annotations.FixedWidth;
 import com.univocity.parsers.annotations.Parsed;
+import com.univocity.parsers.fixed.FieldAlignment;
 
 public class LotControlV2001 {
 
@@ -9,10 +10,10 @@ public class LotControlV2001 {
     @FixedWidth(value = 2)
     private String recordType;
     @Parsed
-    @FixedWidth(value = 9)
+    @FixedWidth(value = 9, alignment = FieldAlignment.RIGHT, padding = '0')
     private String totalLotRecords;
     @Parsed
-    @FixedWidth(value = 18)
+    @FixedWidth(value = 18, alignment = FieldAlignment.RIGHT, padding = '0')
     private String totalValueCollectedInLot;
     @Parsed
     @FixedWidth(value = 4)
